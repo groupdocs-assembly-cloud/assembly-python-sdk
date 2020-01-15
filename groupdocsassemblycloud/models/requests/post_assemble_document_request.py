@@ -22,8 +22,7 @@
 #  SOFTWARE.
 # </summary>
 # --------------------------------------------------------------------------------
-"""post_assemble_document request module
-"""
+
 
 class PostAssembleDocumentRequest(object):
     """

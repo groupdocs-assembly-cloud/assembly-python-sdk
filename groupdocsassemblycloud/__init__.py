@@ -1,5 +1,3 @@
-"""Root package module
-"""
 # coding: utf-8
 
 # flake8: noqa
