@@ -1,5 +1,3 @@
-"""Rest module file
-"""
 # coding: utf-8
 # -----------------------------------------------------------------------------------
 # <copyright company="GroupDocs" file="rest.py">
@@ -43,13 +41,11 @@ try:
 except ImportError:
     raise ImportError('Swagger python client requires urllib3.')
 
-
 logger = logging.getLogger(__name__)
 
 
 class RESTResponse(io.IOBase):
-    """Rest response class
-    """
+
     def __init__(self, resp):
         self.urllib3_response = resp
         self.status = resp.status
@@ -66,8 +62,7 @@ class RESTResponse(io.IOBase):
 
 
 class RESTClientObject(object):
-    """Rest client object
-    """
+
     def __init__(self, configuration, pools_size=4, maxsize=None):
         # urllib3.PoolManager will pass all kw parameters to connectionpool
         # https://github.com/shazow/urllib3/blob/f9409436f83aeb79fbaf090181cd81b784f1b8ce/urllib3/poolmanager.py#L75  # noqa: E501
@@ -244,8 +239,6 @@ class RESTClientObject(object):
 
     def GET(self, url, headers=None, query_params=None, _preload_content=True,
             _request_timeout=None):
-        """GET request
-        """
         return self.request("GET", url,
                             headers=headers,
                             _preload_content=_preload_content,
@@ -254,8 +247,6 @@ class RESTClientObject(object):
 
     def HEAD(self, url, headers=None, query_params=None, _preload_content=True,
              _request_timeout=None):
-        """HEAD request
-        """
         return self.request("HEAD", url,
                             headers=headers,
                             _preload_content=_preload_content,
@@ -264,8 +255,6 @@ class RESTClientObject(object):
 
     def OPTIONS(self, url, headers=None, query_params=None, post_params=None,
                 body=None, _preload_content=True, _request_timeout=None):
-        """OPTIONS request
-        """
         return self.request("OPTIONS", url,
                             headers=headers,
                             query_params=query_params,
@@ -276,8 +265,6 @@ class RESTClientObject(object):
 
     def DELETE(self, url, headers=None, query_params=None, body=None,
                _preload_content=True, _request_timeout=None):
-        """DELETE request
-        """
         return self.request("DELETE", url,
                             headers=headers,
                             query_params=query_params,
@@ -287,8 +274,6 @@ class RESTClientObject(object):
 
     def POST(self, url, headers=None, query_params=None, post_params=None,
              body=None, _preload_content=True, _request_timeout=None):
-        """POST request
-        """
         return self.request("POST", url,
                             headers=headers,
                             query_params=query_params,
@@ -299,8 +284,6 @@ class RESTClientObject(object):
 
     def PUT(self, url, headers=None, query_params=None, post_params=None,
             body=None, _preload_content=True, _request_timeout=None):
-        """PUT request
-        """
         return self.request("PUT", url,
                             headers=headers,
                             query_params=query_params,
@@ -311,8 +294,6 @@ class RESTClientObject(object):
 
     def PATCH(self, url, headers=None, query_params=None, post_params=None,
               body=None, _preload_content=True, _request_timeout=None):
-        """PATCH request
-        """
         return self.request("PATCH", url,
                             headers=headers,
                             query_params=query_params,
@@ -323,13 +304,11 @@ class RESTClientObject(object):
 
 
 class ApiException(Exception):
-    """Api exception class
-    """
+
     def __init__(self, status=None, reason=None, http_resp=None):
         if http_resp:
             self.status = http_resp.status
             self.reason = http_resp.reason
-            self.body = http_resp.data
             self.headers = http_resp.getheaders()
         else:
             self.status = status
@@ -347,5 +326,9 @@ class ApiException(Exception):
 
         if self.body:
             error_message += "HTTP response body: {0}\n".format(self.body)
+        
+        return error_message 
 
-        return error_message
+    def init_error(self, error_object):
+        return ApiError(error_object.get("Code", None), error_object.get("Message", None), error_object.get("Description", None), error_object.get("DateTime", None), 
+        self.init_error(error_object["InnerError"]) if "InnerError" in error_object else None)
