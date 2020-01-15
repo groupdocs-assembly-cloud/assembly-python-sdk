@@ -115,7 +115,7 @@ class AssemblyApi(object):
             raise ValueError("Missing the required parameter `save_options` when calling `post_assemble_document`")  # noqa: E501
 
         collection_formats = {}
-        path = '/assembly/{name}/build'
+        path = '/v4.0/assembly/{name}/build'
         path_params = {}
         if request.name is not None:
             path_params[self.__downcase_first_letter('Name')] = request.name  # noqa: E501
