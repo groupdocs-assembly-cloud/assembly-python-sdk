@@ -1,5 +1,3 @@
-"""Api Client configuration model
-"""
 # coding: utf-8
 
 # -----------------------------------------------------------------------------------
@@ -40,15 +38,11 @@ from six.moves import http_client as httplib
 
 
 class TypeWithDefault(type):
-    """Type With Default Class
-    """
     def __init__(cls, name, bases, dct):
         super(TypeWithDefault, cls).__init__(name, bases, dct)
         cls._default = None
 
     def __call__(cls):
-        """Call method
-        """
         if cls._default is None:
             cls._default = type.__call__(cls)
         return copy.copy(cls._default)
@@ -65,8 +59,6 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         """Constructor"""
         # Default Base url
         self.host = "https://api.groupdocs.com"
-        # Default api version is v1. Available values are v1, v1.1, v2, v3
-        self.api_version = "v1"
         # Temp file folder for downloading files
         self.temp_folder_path = None
 

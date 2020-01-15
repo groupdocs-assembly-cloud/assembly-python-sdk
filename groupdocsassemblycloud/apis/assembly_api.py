@@ -1,5 +1,3 @@
-"""Assembly Api file
-"""
 # coding: utf-8
 
 # -----------------------------------------------------------------------------------
@@ -34,8 +32,6 @@ import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
 import six
-import os
-import mimetypes
 from groupdocsassemblycloud.rest import ApiException
 from groupdocsassemblycloud.api_client import ApiClient
 
@@ -119,7 +115,7 @@ class AssemblyApi(object):
             raise ValueError("Missing the required parameter `save_options` when calling `post_assemble_document`")  # noqa: E501
 
         collection_formats = {}
-        path = '/assembly/{name}/build'
+        path = '/v4.0/assembly/{name}/build'
         path_params = {}
         if request.name is not None:
             path_params[self.__downcase_first_letter('Name')] = request.name  # noqa: E501
@@ -142,13 +138,7 @@ class AssemblyApi(object):
         local_var_files = []
         form_params.append(('saveOptions', request.save_options.to_str())) # noqa: E501
         if request.data is not None:
-             with open(request.data, 'rb') as f:
-                        filename = os.path.basename(f.name)
-                        filedata = f.read()
-                        mimetype = (mimetypes.guess_type(filename)[0] or
-                                    'application/octet-stream')
-                        form_params.append(
-                            tuple(['data', tuple([filename, filedata, mimetype])]))
+            local_var_files.append((self.__downcase_first_letter('Data'), request.data))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
@@ -160,7 +150,7 @@ class AssemblyApi(object):
             ['multipart/form-data'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth']  # noqa: E501
+        auth_settings = ['JWT']  # noqa: E501
 
         return self.api_client.call_api(
             path, 'POST',
@@ -187,9 +177,7 @@ class AssemblyApi(object):
 
     def __request_token(self):
         config = self.api_client.configuration
-        api_version = config.api_version
-        config.api_version = ''
-        request_url = "oauth2/token"
+        request_url = "/connect/token"
         form_params = [('grant_type', 'client_credentials'), ('client_id', config.api_key['app_sid']),
                        ('client_secret', config.api_key['api_key'])]
 
@@ -203,32 +191,5 @@ class AssemblyApi(object):
                                         response_type='object',
                                         files={}, _return_http_data_only=True)
         access_token = data['access_token'] if six.PY3 else data['access_token'].encode('utf8')
-        refresh_token = data['refresh_token'] if six.PY3 else data['refresh_token'].encode('utf8')
         self.api_client.configuration.access_token = access_token
-        self.api_client.configuration.api_version = api_version
-        self.api_client.configuration.refresh_token = refresh_token
-
-    
-    # Refresh token method is going to be removed soon. Obsolete, do not use
-    def __refresh_token(self):
-        config = self.api_client.configuration
-        api_version = config.api_version
-        config.api_version = ''
-        request_url = "oauth2/token"
-        form_params = [('grant_type', 'refresh_token'), ('refresh_token', config.refresh_token)]
-
-        header_params = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'}
-
-        data = self.api_client.call_api(request_url, 'POST',
-                                        {},
-                                        [],
-                                        header_params,
-                                        post_params=form_params,
-                                        response_type='object',
-                                        files={}, _return_http_data_only=True)
-        access_token = data['access_token'] if six.PY3 else data['access_token'].encode('utf8')
-        refresh_token = data['refresh_token'] if six.PY3 else data['refresh_token'].encode('utf8')
-        self.api_client.configuration.access_token = access_token
-        self.api_client.configuration.api_version = api_version
-        self.api_client.configuration.refresh_token = refresh_token
 
