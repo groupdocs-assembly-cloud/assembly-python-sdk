@@ -47,6 +47,6 @@ class TestApi(BaseTestContext):
             file = f.read()
         self.storage_api.put_create(os.path.join(self.remote_test_folder, self.test_folder, remote_name), file)
 
-        request = groupdocsassemblycloud.models.requests.PostAssembleDocumentRequest(remote_name, os.path.join(self.local_test_folder, "Teams.json"), groupdocsassemblycloud.LoadSaveOptionsData('docx'), os.path.join(self.remote_test_folder, self.test_folder),)
+        request = groupdocsassemblycloud.models.requests.PostAssembleDocumentRequest(remote_name, os.path.join(self.local_test_folder, "Teams.json"), groupdocsassemblycloud.LoadSaveOptionsData('pdf'), os.path.join(self.remote_test_folder, self.test_folder),)
         result = self.assembly_api.post_assemble_document(request)
         self.assertTrue(len(result) > 0, 'Error has occurred while building document')

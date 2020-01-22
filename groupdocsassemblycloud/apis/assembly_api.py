@@ -136,7 +136,11 @@ class AssemblyApi(object):
 
         form_params = []
         local_var_files = []
-        form_params.append(('saveOptions', request.save_options.to_str())) # noqa: E501
+        if request.save_options is not None:
+            form_params.append((self.__downcase_first_letter('SaveOptions'), request.save_options.to_str())) # noqa: E501
+            
+            
+        
         if request.data is not None:
             local_var_files.append((self.__downcase_first_letter('Data'), request.data))  # noqa: E501
 
