@@ -32,7 +32,6 @@ import os
 import json
 import unittest
 import warnings
-import asposestoragecloud
 import six
 import groupdocsassemblycloud
 
@@ -54,8 +53,7 @@ class BaseTestContext(unittest.TestCase):
         api_client.configuration.api_key['app_sid'] = creds['AppSid']
         config = groupdocsassemblycloud.Configuration()
         config.host = creds['BaseUrl']
-        config.base_url = creds['BaseUrl'] + '/v1.1'
-        self.storage_api = asposestoragecloud.StorageApi(asposestoragecloud.ApiClient(creds['AppKey'], creds['AppSid'], creds['BaseUrl'], config))
+        config.base_url = creds['BaseUrl'] + '/v1.0'
         self.assembly_api = groupdocsassemblycloud.AssemblyApi(api_client)
         if six.PY3:
             warnings.simplefilter("ignore", ResourceWarning)
