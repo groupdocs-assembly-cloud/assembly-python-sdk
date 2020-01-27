@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="PostAssembleDocumentRequest.py">
+# <copyright company="GroupDocs" file="CreateFolderRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,18 +24,14 @@
 # --------------------------------------------------------------------------------
 
 
-class PostAssembleDocumentRequest(object):
+class CreateFolderRequest(object):
     """
-    Request model for post_assemble_document operation.
+    Request model for create_folder operation.
     Initializes a new instance.
-    :param name File name of template, which is located on a storage
-    :param report_data Report Data Options. It should be JSON with SaveFormat and ReportData
-    :param folder Folder path where template file is located(on a storage)
-    :param dest_file_name Result name of built document
+    :param path Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively
+    :param storage_name Storage name
     """
 
-    def __init__(self, name, report_data, folder=None, dest_file_name=None):
-        self.name = name
-        self.report_data = report_data
-        self.folder = folder
-        self.dest_file_name = dest_file_name
+    def __init__(self, path, storage_name=None):
+        self.path = path
+        self.storage_name = storage_name

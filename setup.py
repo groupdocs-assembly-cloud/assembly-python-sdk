@@ -23,7 +23,7 @@ VERSION = "18.9.0"
 # http://pypi.python.org/pypi/setuptools
 
 REQUIRES = ["urllib3 >= 1.16", "six >= 1.10", "certifi", "python-dateutil"]
-TEST_REQUIRES = ['asposestoragecloud >=1.0.5']
+TEST_REQUIRES = []
 
 setup(
     name=NAME,
