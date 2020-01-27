@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="FileDownloadFileRequest.py">
+# <copyright company="GroupDocs" file="DeleteFileRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,13 +24,13 @@
 # --------------------------------------------------------------------------------
 
 
-class FileDownloadFileRequest(object):
+class DeleteFileRequest(object):
     """
-    Request model for file_download_file operation.
+    Request model for delete_file operation.
     Initializes a new instance.
-    :param path Path of the file including the file name and extension e.g. /folder1/file.ext
+    :param path Path of the file including file name and extension e.g. /Folder1/file.ext
     :param storage_name Storage name
-    :param version_id File version ID to download
+    :param version_id File version ID to delete
     """
 
     def __init__(self, path, storage_name=None, version_id=None):

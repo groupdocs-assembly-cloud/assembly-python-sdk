@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="LoadSaveOptionsData.py">
+# <copyright company="GroupDocs" file="ReportOptionsData.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,7 +29,7 @@ import re  # noqa: F401
 import six
 
 
-class LoadSaveOptionsData(object):
+class ReportOptionsData(object):
     """Save options data which is using for specifying additional save options, like save format and etc.
     """
 
@@ -41,43 +41,69 @@ class LoadSaveOptionsData(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'save_format': 'str'
+        'save_format': 'str',
+        'report_data': 'str'
     }
 
     attribute_map = {
-        'save_format': 'SaveFormat'
+        'save_format': 'SaveFormat',
+        'report_data': 'ReportData'
     }
 
-    def __init__(self, save_format=None):  # noqa: E501
-        """LoadSaveOptionsData - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, save_format=None, report_data=None):  # noqa: E501
+        """ReportOptionsData - a model defined in Swagger"""  # noqa: E501
 
         self._save_format = None
+        self._report_data = None
         self.discriminator = None
 
         if save_format is not None:
             self.save_format = save_format
+        if report_data is not None:
+            self.report_data = report_data
 
     @property
     def save_format(self):
-        """Gets the save_format of this LoadSaveOptionsData.  # noqa: E501
+        """Gets the save_format of this ReportOptionsData.  # noqa: E501
 
         Save format for assembled document  # noqa: E501
 
-        :return: The save_format of this LoadSaveOptionsData.  # noqa: E501
+        :return: The save_format of this ReportOptionsData.  # noqa: E501
         :rtype: str
         """
         return self._save_format
 
     @save_format.setter
     def save_format(self, save_format):
-        """Sets the save_format of this LoadSaveOptionsData.
+        """Sets the save_format of this ReportOptionsData.
 
         Save format for assembled document  # noqa: E501
 
-        :param save_format: The save_format of this LoadSaveOptionsData.  # noqa: E501
+        :param save_format: The save_format of this ReportOptionsData.  # noqa: E501
         :type: str
         """
         self._save_format = save_format
+    @property
+    def report_data(self):
+        """Gets the report_data of this ReportOptionsData.  # noqa: E501
+
+        Data for report  # noqa: E501
+
+        :return: The report_data of this ReportOptionsData.  # noqa: E501
+        :rtype: str
+        """
+        return self._report_data
+
+    @report_data.setter
+    def report_data(self, report_data):
+        """Sets the report_data of this ReportOptionsData.
+
+        Data for report  # noqa: E501
+
+        :param report_data: The report_data of this ReportOptionsData.  # noqa: E501
+        :type: str
+        """
+        self._report_data = report_data
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -115,7 +141,7 @@ class LoadSaveOptionsData(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, LoadSaveOptionsData):
+        if not isinstance(other, ReportOptionsData):
             return False
 
         return self.__dict__ == other.__dict__

@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="FolderGetFilesListRequest.py">
+# <copyright company="GroupDocs" file="GetFilesListRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,9 +24,9 @@
 # --------------------------------------------------------------------------------
 
 
-class FolderGetFilesListRequest(object):
+class GetFilesListRequest(object):
     """
-    Request model for folder_get_files_list operation.
+    Request model for get_files_list operation.
     Initializes a new instance.
     :param path Folder path e.g. /Folder1
     :param storage_name Storage name

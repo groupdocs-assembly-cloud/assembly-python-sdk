@@ -42,8 +42,8 @@ class BaseTestContext(unittest.TestCase):
     def setUp(self):
         root_path = os.path.abspath(os.path.realpath(os.path.dirname(__file__)) + "/..")
         self.local_test_folder = os.path.join(root_path, 'TestData')
-        self.remote_test_folder = os.path.join('Temp', 'SdkTests', 'python')
-        self.remote_test_out = os.path.join('Temp', 'SdkTests', 'python', 'TestOut')
+        self.remote_test_folder = os.path.join('Temp', 'SdkTests')
+        self.remote_test_out = os.path.join('Temp', 'SdkTests', 'TestOut')
         self.local_common_folder = os.path.join(self.local_test_folder, 'Common')
         with open(os.path.join(root_path, 'Settings', 'servercreds.json')) as f:
             creds = json.loads(f.read())

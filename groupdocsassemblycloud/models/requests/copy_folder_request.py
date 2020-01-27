@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="FileDeleteFileRequest.py">
+# <copyright company="GroupDocs" file="CopyFolderRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,16 +24,18 @@
 # --------------------------------------------------------------------------------
 
 
-class FileDeleteFileRequest(object):
+class CopyFolderRequest(object):
     """
-    Request model for file_delete_file operation.
+    Request model for copy_folder operation.
     Initializes a new instance.
-    :param path Path of the file including file name and extension e.g. /Folder1/file.ext
-    :param storage_name Storage name
-    :param version_id File version ID to delete
+    :param dest_path Destination folder path e.g. '/dst'
+    :param src_path Source folder path e.g. /Folder1
+    :param src_storage_name Source storage name
+    :param dest_storage_name Destination storage name
     """
 
-    def __init__(self, path, storage_name=None, version_id=None):
-        self.path = path
-        self.storage_name = storage_name
-        self.version_id = version_id
+    def __init__(self, dest_path, src_path, src_storage_name=None, dest_storage_name=None):
+        self.dest_path = dest_path
+        self.src_path = src_path
+        self.src_storage_name = src_storage_name
+        self.dest_storage_name = dest_storage_name

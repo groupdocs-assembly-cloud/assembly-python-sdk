@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="FileMoveFileRequest.py">
+# <copyright company="GroupDocs" file="MoveFileRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,9 +24,9 @@
 # --------------------------------------------------------------------------------
 
 
-class FileMoveFileRequest(object):
+class MoveFileRequest(object):
     """
-    Request model for file_move_file operation.
+    Request model for move_file operation.
     Initializes a new instance.
     :param dest_path Destination file path e.g. '/dest.ext'
     :param src_path Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'

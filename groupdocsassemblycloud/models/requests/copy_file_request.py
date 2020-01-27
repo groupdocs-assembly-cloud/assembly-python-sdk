@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="FileCopyFileRequest.py">
+# <copyright company="GroupDocs" file="CopyFileRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,9 +24,9 @@
 # --------------------------------------------------------------------------------
 
 
-class FileCopyFileRequest(object):
+class CopyFileRequest(object):
     """
-    Request model for file_copy_file operation.
+    Request model for copy_file operation.
     Initializes a new instance.
     :param dest_path Destination file path
     :param src_path Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'

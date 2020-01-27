@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="FolderMoveFolderRequest.py">
+# <copyright company="GroupDocs" file="DownloadFileRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,18 +24,16 @@
 # --------------------------------------------------------------------------------
 
 
-class FolderMoveFolderRequest(object):
+class DownloadFileRequest(object):
     """
-    Request model for folder_move_folder operation.
+    Request model for download_file operation.
     Initializes a new instance.
-    :param dest_path Destination folder path to move to e.g '/dst'
-    :param src_path Source folder path e.g. /Folder1
-    :param src_storage_name Source storage name
-    :param dest_storage_name Destination storage name
+    :param path Path of the file including the file name and extension e.g. /folder1/file.ext
+    :param storage_name Storage name
+    :param version_id File version ID to download
     """
 
-    def __init__(self, dest_path, src_path, src_storage_name=None, dest_storage_name=None):
-        self.dest_path = dest_path
-        self.src_path = src_path
-        self.src_storage_name = src_storage_name
-        self.dest_storage_name = dest_storage_name
+    def __init__(self, path, storage_name=None, version_id=None):
+        self.path = path
+        self.storage_name = storage_name
+        self.version_id = version_id

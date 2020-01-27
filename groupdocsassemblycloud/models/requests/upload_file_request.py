@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="FolderDeleteFolderRequest.py">
+# <copyright company="GroupDocs" file="UploadFileRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,16 +24,16 @@
 # --------------------------------------------------------------------------------
 
 
-class FolderDeleteFolderRequest(object):
+class UploadFileRequest(object):
     """
-    Request model for folder_delete_folder operation.
+    Request model for upload_file operation.
     Initializes a new instance.
-    :param path Folder path e.g. /Folder1s
+    :param file File to upload
+    :param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header.
     :param storage_name Storage name
-    :param recursive Enable to delete folders, subfolders and files
     """
 
-    def __init__(self, path, storage_name=None, recursive=None):
+    def __init__(self, file, path, storage_name=None):
+        self.file = file
         self.path = path
         self.storage_name = storage_name
-        self.recursive = recursive
