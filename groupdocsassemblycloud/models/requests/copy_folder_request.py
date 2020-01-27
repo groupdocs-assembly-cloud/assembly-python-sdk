@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="PostAssembleDocumentRequest.py">
+# <copyright company="GroupDocs" file="CopyFolderRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,18 +24,18 @@
 # --------------------------------------------------------------------------------
 
 
-class PostAssembleDocumentRequest(object):
+class CopyFolderRequest(object):
     """
-    Request model for post_assemble_document operation.
+    Request model for copy_folder operation.
     Initializes a new instance.
-    :param name File name of template, which is located on a storage
-    :param report_data Report Data Options. It should be JSON with SaveFormat and ReportData
-    :param folder Folder path where template file is located(on a storage)
-    :param dest_file_name Result name of built document
+    :param dest_path Destination folder path e.g. '/dst'
+    :param src_path Source folder path e.g. /Folder1
+    :param src_storage_name Source storage name
+    :param dest_storage_name Destination storage name
     """
 
-    def __init__(self, name, report_data, folder=None, dest_file_name=None):
-        self.name = name
-        self.report_data = report_data
-        self.folder = folder
-        self.dest_file_name = dest_file_name
+    def __init__(self, dest_path, src_path, src_storage_name=None, dest_storage_name=None):
+        self.dest_path = dest_path
+        self.src_path = src_path
+        self.src_storage_name = src_storage_name
+        self.dest_storage_name = dest_storage_name

@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="PostAssembleDocumentRequest.py">
+# <copyright company="GroupDocs" file="UploadFileRequest.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -24,18 +24,16 @@
 # --------------------------------------------------------------------------------
 
 
-class PostAssembleDocumentRequest(object):
+class UploadFileRequest(object):
     """
-    Request model for post_assemble_document operation.
+    Request model for upload_file operation.
     Initializes a new instance.
-    :param name File name of template, which is located on a storage
-    :param report_data Report Data Options. It should be JSON with SaveFormat and ReportData
-    :param folder Folder path where template file is located(on a storage)
-    :param dest_file_name Result name of built document
+    :param file File to upload
+    :param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header.
+    :param storage_name Storage name
     """
 
-    def __init__(self, name, report_data, folder=None, dest_file_name=None):
-        self.name = name
-        self.report_data = report_data
-        self.folder = folder
-        self.dest_file_name = dest_file_name
+    def __init__(self, file, path, storage_name=None):
+        self.file = file
+        self.path = path
+        self.storage_name = storage_name

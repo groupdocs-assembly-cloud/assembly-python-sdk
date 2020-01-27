@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="LoadSaveOptionsData.py">
+# <copyright company="GroupDocs" file="ErrorDetails.py">
 #   Copyright (c) 2019 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class LoadSaveOptionsData(object):
-    """Save options data which is using for specifying additional save options, like save format and etc.
+class ErrorDetails(object):
+    """The error details
     """
 
     """
@@ -41,43 +41,71 @@ class LoadSaveOptionsData(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'save_format': 'str'
+        'request_id': 'str',
+        '_date': 'datetime'
     }
 
     attribute_map = {
-        'save_format': 'SaveFormat'
+        'request_id': 'RequestId',
+        '_date': 'Date'
     }
 
-    def __init__(self, save_format=None):  # noqa: E501
-        """LoadSaveOptionsData - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, request_id=None, _date=None):  # noqa: E501
+        """ErrorDetails - a model defined in Swagger"""  # noqa: E501
 
-        self._save_format = None
+        self._request_id = None
+        self.__date = None
         self.discriminator = None
 
-        if save_format is not None:
-            self.save_format = save_format
+        if request_id is not None:
+            self.request_id = request_id
+        if _date is not None:
+            self._date = _date
 
     @property
-    def save_format(self):
-        """Gets the save_format of this LoadSaveOptionsData.  # noqa: E501
+    def request_id(self):
+        """Gets the request_id of this ErrorDetails.  # noqa: E501
 
-        Save format for assembled document  # noqa: E501
+        The request id  # noqa: E501
 
-        :return: The save_format of this LoadSaveOptionsData.  # noqa: E501
+        :return: The request_id of this ErrorDetails.  # noqa: E501
         :rtype: str
         """
-        return self._save_format
+        return self._request_id
 
-    @save_format.setter
-    def save_format(self, save_format):
-        """Sets the save_format of this LoadSaveOptionsData.
+    @request_id.setter
+    def request_id(self, request_id):
+        """Sets the request_id of this ErrorDetails.
 
-        Save format for assembled document  # noqa: E501
+        The request id  # noqa: E501
 
-        :param save_format: The save_format of this LoadSaveOptionsData.  # noqa: E501
+        :param request_id: The request_id of this ErrorDetails.  # noqa: E501
         :type: str
         """
-        self._save_format = save_format
+        self._request_id = request_id
+    @property
+    def _date(self):
+        """Gets the _date of this ErrorDetails.  # noqa: E501
+
+        Date  # noqa: E501
+
+        :return: The _date of this ErrorDetails.  # noqa: E501
+        :rtype: datetime
+        """
+        return self.__date
+
+    @_date.setter
+    def _date(self, _date):
+        """Sets the _date of this ErrorDetails.
+
+        Date  # noqa: E501
+
+        :param _date: The _date of this ErrorDetails.  # noqa: E501
+        :type: datetime
+        """
+        if _date is None:
+            raise ValueError("Invalid value for `_date`, must not be `None`")  # noqa: E501
+        self.__date = _date
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -115,7 +143,7 @@ class LoadSaveOptionsData(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, LoadSaveOptionsData):
+        if not isinstance(other, ErrorDetails):
             return False
 
         return self.__dict__ == other.__dict__
