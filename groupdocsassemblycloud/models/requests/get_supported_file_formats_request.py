@@ -22,31 +22,10 @@
 #  SOFTWARE.
 # </summary>
 # --------------------------------------------------------------------------------
-<<<<<<<< HEAD:groupdocsassemblycloud/models/requests/get_supported_file_formats_request.py
-========
-
->>>>>>>> branch:groupdocsassemblycloud/models/requests/post_assemble_document_request.py
-
-
 class GetSupportedFileFormatsRequest(object):
     """
     Request model for get_supported_file_formats operation.
     Initializes a new instance.
-<<<<<<<< HEAD:groupdocsassemblycloud/models/requests/get_supported_file_formats_request.py
     """
-
     def __init__(self):
         pass
-========
-    :param name File name of template, which is located on a storage
-    :param report_data Report Data Options. It should be JSON with SaveFormat and ReportData
-    :param folder Folder path where template file is located(on a storage)
-    :param dest_file_name Result name of built document
-    """
-
-    def __init__(self, name, report_data, folder=None, dest_file_name=None):
-        self.name = name
-        self.report_data = report_data
-        self.folder = folder
-        self.dest_file_name = dest_file_name
->>>>>>>> branch:groupdocsassemblycloud/models/requests/post_assemble_document_request.py
