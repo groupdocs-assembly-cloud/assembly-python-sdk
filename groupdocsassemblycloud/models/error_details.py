@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="FileResponse.py">
+# <copyright company="Aspose" file="ErrorDetails.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class FileResponse(object):
-    """The empty type used as a flag.             
+class ErrorDetails(object):
+    """The error details
     """
 
     """
@@ -41,15 +41,71 @@ class FileResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'request_id': 'str',
+        '_date': 'datetime'
     }
 
     attribute_map = {
+        'request_id': 'RequestId',
+        '_date': 'Date'
     }
 
-    def __init__(self):  # noqa: E501
-        """FileResponse - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, request_id=None, _date=None):  # noqa: E501
+        """ErrorDetails - a model defined in Swagger"""  # noqa: E501
+
+        self._request_id = None
+        self.__date = None
         self.discriminator = None
 
+        if request_id is not None:
+            self.request_id = request_id
+        if _date is not None:
+            self._date = _date
+
+    @property
+    def request_id(self):
+        """Gets the request_id of this ErrorDetails.  # noqa: E501
+
+        The request id  # noqa: E501
+
+        :return: The request_id of this ErrorDetails.  # noqa: E501
+        :rtype: str
+        """
+        return self._request_id
+
+    @request_id.setter
+    def request_id(self, request_id):
+        """Sets the request_id of this ErrorDetails.
+
+        The request id  # noqa: E501
+
+        :param request_id: The request_id of this ErrorDetails.  # noqa: E501
+        :type: str
+        """
+        self._request_id = request_id
+    @property
+    def _date(self):
+        """Gets the _date of this ErrorDetails.  # noqa: E501
+
+        Date  # noqa: E501
+
+        :return: The _date of this ErrorDetails.  # noqa: E501
+        :rtype: datetime
+        """
+        return self.__date
+
+    @_date.setter
+    def _date(self, _date):
+        """Sets the _date of this ErrorDetails.
+
+        Date  # noqa: E501
+
+        :param _date: The _date of this ErrorDetails.  # noqa: E501
+        :type: datetime
+        """
+        if _date is None:
+            raise ValueError("Invalid value for `_date`, must not be `None`")  # noqa: E501
+        self.__date = _date
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -87,7 +143,7 @@ class FileResponse(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, FileResponse):
+        if not isinstance(other, ErrorDetails):
             return False
 
         return self.__dict__ == other.__dict__

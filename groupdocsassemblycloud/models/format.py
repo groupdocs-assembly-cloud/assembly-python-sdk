@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="FileResponse.py">
+# <copyright company="Aspose" file="Format.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class FileResponse(object):
-    """The empty type used as a flag.             
+class Format(object):
+    """Format description.
     """
 
     """
@@ -41,15 +41,69 @@ class FileResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'file_format': 'str',
+        'extension': 'str'
     }
 
     attribute_map = {
+        'file_format': 'FileFormat',
+        'extension': 'Extension'
     }
 
-    def __init__(self):  # noqa: E501
-        """FileResponse - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, file_format=None, extension=None):  # noqa: E501
+        """Format - a model defined in Swagger"""  # noqa: E501
+
+        self._file_format = None
+        self._extension = None
         self.discriminator = None
 
+        if file_format is not None:
+            self.file_format = file_format
+        if extension is not None:
+            self.extension = extension
+
+    @property
+    def file_format(self):
+        """Gets the file_format of this Format.  # noqa: E501
+
+        Gets or sets file format.  # noqa: E501
+
+        :return: The file_format of this Format.  # noqa: E501
+        :rtype: str
+        """
+        return self._file_format
+
+    @file_format.setter
+    def file_format(self, file_format):
+        """Sets the file_format of this Format.
+
+        Gets or sets file format.  # noqa: E501
+
+        :param file_format: The file_format of this Format.  # noqa: E501
+        :type: str
+        """
+        self._file_format = file_format
+    @property
+    def extension(self):
+        """Gets the extension of this Format.  # noqa: E501
+
+        Gets or sets file extension.  # noqa: E501
+
+        :return: The extension of this Format.  # noqa: E501
+        :rtype: str
+        """
+        return self._extension
+
+    @extension.setter
+    def extension(self, extension):
+        """Sets the extension of this Format.
+
+        Gets or sets file extension.  # noqa: E501
+
+        :param extension: The extension of this Format.  # noqa: E501
+        :type: str
+        """
+        self._extension = extension
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -87,7 +141,7 @@ class FileResponse(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, FileResponse):
+        if not isinstance(other, Format):
             return False
 
         return self.__dict__ == other.__dict__

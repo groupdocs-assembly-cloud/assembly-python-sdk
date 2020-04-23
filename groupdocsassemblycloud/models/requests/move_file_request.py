@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="PostAssembleDocumentRequest.py">
-#   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+# <copyright company="Aspose" file="MoveFileRequest.py">
+#   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,23 +22,22 @@
 #  SOFTWARE.
 # </summary>
 # --------------------------------------------------------------------------------
-"""post_assemble_document request module
-"""
 
-class PostAssembleDocumentRequest(object):
+
+class MoveFileRequest(object):
     """
-    Request model for post_assemble_document operation.
+    Request model for move_file operation.
     Initializes a new instance.
-    :param name File name of template, which is located on a storage
-    :param data Report data in JSON or XML format
-    :param save_options Save options in json format
-    :param folder Folder path where template file is located(on a storage)
-    :param dest_file_name Result name of built document
+    :param dest_path Destination file path e.g. '/dest.ext'
+    :param src_path Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'
+    :param src_storage_name Source storage name
+    :param dest_storage_name Destination storage name
+    :param version_id File version ID to move
     """
 
-    def __init__(self, name, data, save_options, folder=None, dest_file_name=None):
-        self.name = name
-        self.data = data
-        self.save_options = save_options
-        self.folder = folder
-        self.dest_file_name = dest_file_name
+    def __init__(self, dest_path, src_path, src_storage_name=None, dest_storage_name=None, version_id=None):
+        self.dest_path = dest_path
+        self.src_path = src_path
+        self.src_storage_name = src_storage_name
+        self.dest_storage_name = dest_storage_name
+        self.version_id = version_id

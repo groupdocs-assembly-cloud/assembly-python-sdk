@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="FileResponse.py">
+# <copyright company="Aspose" file="FilesUploadResult.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class FileResponse(object):
-    """The empty type used as a flag.             
+class FilesUploadResult(object):
+    """File upload result
     """
 
     """
@@ -41,15 +41,69 @@ class FileResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'uploaded': 'list[str]',
+        'errors': 'list[Error]'
     }
 
     attribute_map = {
+        'uploaded': 'Uploaded',
+        'errors': 'Errors'
     }
 
-    def __init__(self):  # noqa: E501
-        """FileResponse - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, uploaded=None, errors=None):  # noqa: E501
+        """FilesUploadResult - a model defined in Swagger"""  # noqa: E501
+
+        self._uploaded = None
+        self._errors = None
         self.discriminator = None
 
+        if uploaded is not None:
+            self.uploaded = uploaded
+        if errors is not None:
+            self.errors = errors
+
+    @property
+    def uploaded(self):
+        """Gets the uploaded of this FilesUploadResult.  # noqa: E501
+
+        List of uploaded file names  # noqa: E501
+
+        :return: The uploaded of this FilesUploadResult.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._uploaded
+
+    @uploaded.setter
+    def uploaded(self, uploaded):
+        """Sets the uploaded of this FilesUploadResult.
+
+        List of uploaded file names  # noqa: E501
+
+        :param uploaded: The uploaded of this FilesUploadResult.  # noqa: E501
+        :type: list[str]
+        """
+        self._uploaded = uploaded
+    @property
+    def errors(self):
+        """Gets the errors of this FilesUploadResult.  # noqa: E501
+
+        List of errors.  # noqa: E501
+
+        :return: The errors of this FilesUploadResult.  # noqa: E501
+        :rtype: list[Error]
+        """
+        return self._errors
+
+    @errors.setter
+    def errors(self, errors):
+        """Sets the errors of this FilesUploadResult.
+
+        List of errors.  # noqa: E501
+
+        :param errors: The errors of this FilesUploadResult.  # noqa: E501
+        :type: list[Error]
+        """
+        self._errors = errors
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -87,7 +141,7 @@ class FileResponse(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, FileResponse):
+        if not isinstance(other, FilesUploadResult):
             return False
 
         return self.__dict__ == other.__dict__

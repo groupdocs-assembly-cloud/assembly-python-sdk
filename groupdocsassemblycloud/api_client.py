@@ -1,10 +1,7 @@
-"""
-ApiClient class
-"""
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="api_client.py">
-#   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+# <copyright company="Aspose" file="api_client.py">
+#   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -80,12 +77,12 @@ class ApiClient(object):
 
         self.pool = ThreadPool()
         self.rest_client = rest.RESTClientObject(configuration)
-        self.default_headers = {'x-aspose-client': 'python sdk', 'x-aspose-version': '18.9'}
+        self.default_headers = {'x-groupdocs-client': 'python sdk', 'x-groupdocs-version': '20.5'}
         if header_name is not None:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'python sdk 18.9'
+        self.user_agent = 'python sdk 20.5'
 
     def __del__(self):
         self.pool.close()
@@ -116,6 +113,7 @@ class ApiClient(object):
         # header parameters
         header_params = header_params or {}
         header_params.update(self.default_headers)
+        header_params['Authorization'] = "Bearer " + self.configuration.access_token
         if self.cookie:
             header_params['Cookie'] = self.cookie
         if header_params:
@@ -158,9 +156,9 @@ class ApiClient(object):
         # request url
         url = ''
         if six.PY3:
-            url = self.configuration.host + '/' + self.configuration.api_version + resource_path
+            url = self.configuration.host + resource_path
         else:
-            url = (self.configuration.host + '/' + self.configuration.api_version + resource_path).encode('utf8')
+            url = (self.configuration.host + resource_path).encode('utf8')
 
         # perform request and return response
         response_data = self.request(
@@ -452,13 +450,12 @@ class ApiClient(object):
                     continue
                 file_names = v if type(v) is list else [v]
                 for n in file_names:
-                    with open(n, 'rb') as f:
-                        filename = os.path.basename(f.name)
-                        filedata = f.read()
-                        mimetype = (mimetypes.guess_type(filename)[0] or
-                                    'application/octet-stream')
-                        params.append(
-                            tuple([k, tuple([filename, filedata, mimetype])]))
+                    filename = os.path.basename(n.name)
+                    filedata = n.read()
+                    mimetype = (mimetypes.guess_type(filename)[0] or
+                                'application/octet-stream')
+                    params.append(
+                        tuple([k, tuple([filename, filedata, mimetype])]))
 
         return params
 
@@ -593,8 +590,11 @@ class ApiClient(object):
         :return: datetime.
         """
         try:
-            from dateutil.parser import parse
-            return parse(re.search('[0-9]', string).group(0))
+            if string == '0001-01-01T00:00:00':
+                return datetime.datetime.min
+            else:
+                from dateutil.parser import parse
+                return parse(re.search('[0-9]', string).group(0))
         except ImportError:
             return string
         except ValueError:
@@ -613,7 +613,9 @@ class ApiClient(object):
         :param klass: class literal.
         :return: model object.
         """
-
+        if klass is None: 
+            return data
+            
         if not klass.swagger_types and not hasattr(klass,
                                                    'get_real_child_model'):
             return data

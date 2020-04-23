@@ -32,9 +32,9 @@ import os
 import json
 import unittest
 import warnings
-import asposestoragecloud
 import six
 import groupdocsassemblycloud
+from groupdocsassemblycloud.models import requests
 
 class BaseTestContext(unittest.TestCase):
     """
@@ -48,14 +48,10 @@ class BaseTestContext(unittest.TestCase):
         self.local_common_folder = os.path.join(self.local_test_folder, 'Common')
         with open(os.path.join(root_path, 'Settings', 'servercreds.json')) as f:
             creds = json.loads(f.read())
-        api_client = groupdocsassemblycloud.ApiClient()
-        api_client.configuration.host = creds['BaseUrl']
-        api_client.configuration.api_key['api_key'] = creds['AppKey']
-        api_client.configuration.api_key['app_sid'] = creds['AppSid']
-        config = groupdocsassemblycloud.Configuration()
-        config.host = creds['BaseUrl']
-        config.base_url = creds['BaseUrl'] + '/v1.1'
-        self.storage_api = asposestoragecloud.StorageApi(asposestoragecloud.ApiClient(creds['AppKey'], creds['AppSid'], creds['BaseUrl'], config))
-        self.assembly_api = groupdocsassemblycloud.AssemblyApi(api_client)
+        self.assembly_api = groupdocsassemblycloud.AssemblyApi(creds['AppSid'], creds['AppKey'], creds['BaseUrl'])
         if six.PY3:
             warnings.simplefilter("ignore", ResourceWarning)
+
+    def uploadFileToStorage(self, file, path):
+        upload_request = requests.UploadFileRequest(file, path)
+        self.assembly_api.upload_file(upload_request)

@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="FileResponse.py">
+# <copyright company="Aspose" file="FormatCollection.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class FileResponse(object):
-    """The empty type used as a flag.             
+class FormatCollection(object):
+    """Describes object which contains list of supported file formats.
     """
 
     """
@@ -41,15 +41,43 @@ class FileResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'formats': 'list[Format]'
     }
 
     attribute_map = {
+        'formats': 'Formats'
     }
 
-    def __init__(self):  # noqa: E501
-        """FileResponse - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, formats=None):  # noqa: E501
+        """FormatCollection - a model defined in Swagger"""  # noqa: E501
+
+        self._formats = None
         self.discriminator = None
 
+        if formats is not None:
+            self.formats = formats
+
+    @property
+    def formats(self):
+        """Gets the formats of this FormatCollection.  # noqa: E501
+
+        Gets or sets supported file formats.  # noqa: E501
+
+        :return: The formats of this FormatCollection.  # noqa: E501
+        :rtype: list[Format]
+        """
+        return self._formats
+
+    @formats.setter
+    def formats(self, formats):
+        """Sets the formats of this FormatCollection.
+
+        Gets or sets supported file formats.  # noqa: E501
+
+        :param formats: The formats of this FormatCollection.  # noqa: E501
+        :type: list[Format]
+        """
+        self._formats = formats
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -87,7 +115,7 @@ class FileResponse(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, FileResponse):
+        if not isinstance(other, FormatCollection):
             return False
 
         return self.__dict__ == other.__dict__

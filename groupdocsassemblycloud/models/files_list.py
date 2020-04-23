@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="FileResponse.py">
+# <copyright company="Aspose" file="FilesList.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class FileResponse(object):
-    """The empty type used as a flag.             
+class FilesList(object):
+    """Files list
     """
 
     """
@@ -41,15 +41,43 @@ class FileResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'value': 'list[StorageFile]'
     }
 
     attribute_map = {
+        'value': 'Value'
     }
 
-    def __init__(self):  # noqa: E501
-        """FileResponse - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, value=None):  # noqa: E501
+        """FilesList - a model defined in Swagger"""  # noqa: E501
+
+        self._value = None
         self.discriminator = None
 
+        if value is not None:
+            self.value = value
+
+    @property
+    def value(self):
+        """Gets the value of this FilesList.  # noqa: E501
+
+        Files and folders contained by folder .  # noqa: E501
+
+        :return: The value of this FilesList.  # noqa: E501
+        :rtype: list[StorageFile]
+        """
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        """Sets the value of this FilesList.
+
+        Files and folders contained by folder .  # noqa: E501
+
+        :param value: The value of this FilesList.  # noqa: E501
+        :type: list[StorageFile]
+        """
+        self._value = value
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -87,7 +115,7 @@ class FileResponse(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, FileResponse):
+        if not isinstance(other, FilesList):
             return False
 
         return self.__dict__ == other.__dict__

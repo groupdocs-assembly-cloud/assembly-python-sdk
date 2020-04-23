@@ -1,9 +1,7 @@
-"""LoadSaveOptionsData module file
-"""
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="LoadSaveOptionsData.py">
-#   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+# <copyright company="Aspose" file="AssemblyResponse.py">
+#   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class LoadSaveOptionsData(object):
-    """Save options data which is using for specifying additional save options, like save format and etc.
+class AssemblyResponse(object):
+    """Base class for all responses.
     """
 
     """
@@ -43,43 +41,53 @@ class LoadSaveOptionsData(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'save_format': 'str'
+        'request_id': 'str'
     }
 
     attribute_map = {
-        'save_format': 'SaveFormat'
+        'request_id': 'RequestId'
     }
 
-    def __init__(self, save_format=None):  # noqa: E501
-        """LoadSaveOptionsData - a model defined in Swagger"""  # noqa: E501
+    discriminator_value_class_map = {
+        'AssemblyApiErrorResponse': 'AssemblyApiErrorResponse',
+        'FileFormatsResponse': 'FileFormatsResponse'
+    }
 
-        self._save_format = None
-        self.discriminator = None
+    def __init__(self, request_id=None):  # noqa: E501
+        """AssemblyResponse - a model defined in Swagger"""  # noqa: E501
 
-        if save_format is not None:
-            self.save_format = save_format
+        self._request_id = None
+        self.discriminator = 'Type'
+
+        if request_id is not None:
+            self.request_id = request_id
 
     @property
-    def save_format(self):
-        """Gets the save_format of this LoadSaveOptionsData.  # noqa: E501
+    def request_id(self):
+        """Gets the request_id of this AssemblyResponse.  # noqa: E501
 
-        Save format for assembled document  # noqa: E501
+        Gets or sets request Id.  # noqa: E501
 
-        :return: The save_format of this LoadSaveOptionsData.  # noqa: E501
+        :return: The request_id of this AssemblyResponse.  # noqa: E501
         :rtype: str
         """
-        return self._save_format
+        return self._request_id
 
-    @save_format.setter
-    def save_format(self, save_format):
-        """Sets the save_format of this LoadSaveOptionsData.
+    @request_id.setter
+    def request_id(self, request_id):
+        """Sets the request_id of this AssemblyResponse.
 
-        Save format for assembled document  # noqa: E501
+        Gets or sets request Id.  # noqa: E501
 
-        :param save_format: The save_format of this LoadSaveOptionsData.  # noqa: E501
+        :param request_id: The request_id of this AssemblyResponse.  # noqa: E501
         :type: str
         """
-        self._save_format = save_format
+        self._request_id = request_id
+    def get_real_child_model(self, data):
+        """Returns the real base class specified by the discriminator"""
+        discriminator_value = data[self.discriminator].lower()
+        return self.discriminator_value_class_map.get(discriminator_value)
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -117,7 +125,7 @@ class LoadSaveOptionsData(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, LoadSaveOptionsData):
+        if not isinstance(other, AssemblyResponse):
             return False
 
         return self.__dict__ == other.__dict__

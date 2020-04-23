@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="FileResponse.py">
+# <copyright company="Aspose" file="AssemblyApiErrorResponse.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class FileResponse(object):
-    """The empty type used as a flag.             
+class AssemblyApiErrorResponse(object):
+    """Error response for exceptions.             
     """
 
     """
@@ -41,15 +41,43 @@ class FileResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'error': 'ApiError'
     }
 
     attribute_map = {
+        'error': 'Error'
     }
 
-    def __init__(self):  # noqa: E501
-        """FileResponse - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, error=None):  # noqa: E501
+        """AssemblyApiErrorResponse - a model defined in Swagger"""  # noqa: E501
+
+        self._error = None
         self.discriminator = None
 
+        if error is not None:
+            self.error = error
+
+    @property
+    def error(self):
+        """Gets the error of this AssemblyApiErrorResponse.  # noqa: E501
+
+        Gets or sets error.  # noqa: E501
+
+        :return: The error of this AssemblyApiErrorResponse.  # noqa: E501
+        :rtype: ApiError
+        """
+        return self._error
+
+    @error.setter
+    def error(self, error):
+        """Sets the error of this AssemblyApiErrorResponse.
+
+        Gets or sets error.  # noqa: E501
+
+        :param error: The error of this AssemblyApiErrorResponse.  # noqa: E501
+        :type: ApiError
+        """
+        self._error = error
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -87,7 +115,7 @@ class FileResponse(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, FileResponse):
+        if not isinstance(other, AssemblyApiErrorResponse):
             return False
 
         return self.__dict__ == other.__dict__

@@ -1,10 +1,8 @@
-"""Api Client configuration model
-"""
 # coding: utf-8
 
 # -----------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="configuration.py">
-#   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+# <copyright company="Aspose" file="configuration.py">
+#   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,15 +38,11 @@ from six.moves import http_client as httplib
 
 
 class TypeWithDefault(type):
-    """Type With Default Class
-    """
     def __init__(cls, name, bases, dct):
         super(TypeWithDefault, cls).__init__(name, bases, dct)
         cls._default = None
 
     def __call__(cls):
-        """Call method
-        """
         if cls._default is None:
             cls._default = type.__call__(cls)
         return copy.copy(cls._default)
@@ -65,8 +59,6 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         """Constructor"""
         # Default Base url
         self.host = "https://api.groupdocs.com"
-        # Default api version is v1. Available values are v1, v1.1, v2, v3
-        self.api_version = "v1"
         # Temp file folder for downloading files
         self.temp_folder_path = None
 
@@ -248,27 +240,13 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         :return: The Auth Settings information dict.
         """
         return {
-            'appsid':
-                {
-                    'type': 'api_key',
-                    'in': 'query',
-                    'key': 'Appsid',
-                    'value': self.get_api_key_with_prefix('Appsid')
-                },
 
-            'oauth':
+            'JWT':
                 {
                     'type': 'oauth2',
                     'in': 'header',
                     'key': 'Authorization',
                     'value': 'Bearer ' + self.access_token
-                },
-            'signature':
-                {
-                    'type': 'api_key',
-                    'in': 'query',
-                    'key': 'Signature',
-                    'value': self.get_api_key_with_prefix('Signature')
                 },
 
         }
@@ -281,6 +259,6 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         return "Python SDK Debug Report:\n"\
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
-               "Version of the API: 19.1\n"\
+               "Version of the API: 20.4\n"\
                "SDK Package Version: 18.9.0".\
                format(env=sys.platform, pyversion=sys.version)
