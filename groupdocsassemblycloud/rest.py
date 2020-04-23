@@ -1,7 +1,7 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="rest.py">
-#   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+# <copyright company="Aspose" file="rest.py">
+#   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,6 +40,8 @@ try:
     import urllib3
 except ImportError:
     raise ImportError('Swagger python client requires urllib3.')
+
+from groupdocsassemblycloud.models import AssemblyApiErrorResponse, ApiError
 
 logger = logging.getLogger(__name__)
 
@@ -310,6 +312,8 @@ class ApiException(Exception):
             self.status = http_resp.status
             self.reason = http_resp.reason
             self.headers = http_resp.getheaders()
+            if len(http_resp.data) > 0:
+                self.init_error_response(json.loads(http_resp.data))
         else:
             self.status = status
             self.reason = reason
@@ -326,8 +330,13 @@ class ApiException(Exception):
 
         if self.body:
             error_message += "HTTP response body: {0}\n".format(self.body)
+
+        return error_message
+
         
-        return error_message 
+    def init_error_response(self, json_object):
+        self.body = AssemblyApiErrorResponse(json_object["RequestId"], self.init_error(json_object["Error"]))
+        
 
     def init_error(self, error_object):
         return ApiError(error_object.get("Code", None), error_object.get("Message", None), error_object.get("Description", None), error_object.get("DateTime", None), 

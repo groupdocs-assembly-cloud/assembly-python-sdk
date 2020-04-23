@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="Error.py">
+# <copyright company="Aspose" file="TemplateFileInfo.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class Error(object):
-    """Error
+class TemplateFileInfo(object):
+    """TemplateFileInfo dto.             
     """
 
     """
@@ -41,121 +41,121 @@ class Error(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'code': 'str',
-        'message': 'str',
-        'description': 'str',
-        'inner_error': 'ErrorDetails'
+        'file_path': 'str',
+        'storage_name': 'str',
+        'version_id': 'str',
+        'password': 'str'
     }
 
     attribute_map = {
-        'code': 'Code',
-        'message': 'Message',
-        'description': 'Description',
-        'inner_error': 'InnerError'
+        'file_path': 'FilePath',
+        'storage_name': 'StorageName',
+        'version_id': 'VersionId',
+        'password': 'Password'
     }
 
-    def __init__(self, code=None, message=None, description=None, inner_error=None):  # noqa: E501
-        """Error - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, file_path=None, storage_name=None, version_id=None, password=None):  # noqa: E501
+        """TemplateFileInfo - a model defined in Swagger"""  # noqa: E501
 
-        self._code = None
-        self._message = None
-        self._description = None
-        self._inner_error = None
+        self._file_path = None
+        self._storage_name = None
+        self._version_id = None
+        self._password = None
         self.discriminator = None
 
-        if code is not None:
-            self.code = code
-        if message is not None:
-            self.message = message
-        if description is not None:
-            self.description = description
-        if inner_error is not None:
-            self.inner_error = inner_error
+        if file_path is not None:
+            self.file_path = file_path
+        if storage_name is not None:
+            self.storage_name = storage_name
+        if version_id is not None:
+            self.version_id = version_id
+        if password is not None:
+            self.password = password
 
     @property
-    def code(self):
-        """Gets the code of this Error.  # noqa: E501
+    def file_path(self):
+        """Gets the file_path of this TemplateFileInfo.  # noqa: E501
 
-        Code               # noqa: E501
+        Gets or sets path to file.               # noqa: E501
 
-        :return: The code of this Error.  # noqa: E501
+        :return: The file_path of this TemplateFileInfo.  # noqa: E501
         :rtype: str
         """
-        return self._code
+        return self._file_path
 
-    @code.setter
-    def code(self, code):
-        """Sets the code of this Error.
+    @file_path.setter
+    def file_path(self, file_path):
+        """Sets the file_path of this TemplateFileInfo.
 
-        Code               # noqa: E501
+        Gets or sets path to file.               # noqa: E501
 
-        :param code: The code of this Error.  # noqa: E501
+        :param file_path: The file_path of this TemplateFileInfo.  # noqa: E501
         :type: str
         """
-        self._code = code
+        self._file_path = file_path
     @property
-    def message(self):
-        """Gets the message of this Error.  # noqa: E501
+    def storage_name(self):
+        """Gets the storage_name of this TemplateFileInfo.  # noqa: E501
 
-        Message               # noqa: E501
+        Gets or sets the name of storage.               # noqa: E501
 
-        :return: The message of this Error.  # noqa: E501
+        :return: The storage_name of this TemplateFileInfo.  # noqa: E501
         :rtype: str
         """
-        return self._message
+        return self._storage_name
 
-    @message.setter
-    def message(self, message):
-        """Sets the message of this Error.
+    @storage_name.setter
+    def storage_name(self, storage_name):
+        """Sets the storage_name of this TemplateFileInfo.
 
-        Message               # noqa: E501
+        Gets or sets the name of storage.               # noqa: E501
 
-        :param message: The message of this Error.  # noqa: E501
+        :param storage_name: The storage_name of this TemplateFileInfo.  # noqa: E501
         :type: str
         """
-        self._message = message
+        self._storage_name = storage_name
     @property
-    def description(self):
-        """Gets the description of this Error.  # noqa: E501
+    def version_id(self):
+        """Gets the version_id of this TemplateFileInfo.  # noqa: E501
 
-        Description               # noqa: E501
+        Gets or sets the name of storage.               # noqa: E501
 
-        :return: The description of this Error.  # noqa: E501
+        :return: The version_id of this TemplateFileInfo.  # noqa: E501
         :rtype: str
         """
-        return self._description
+        return self._version_id
 
-    @description.setter
-    def description(self, description):
-        """Sets the description of this Error.
+    @version_id.setter
+    def version_id(self, version_id):
+        """Sets the version_id of this TemplateFileInfo.
 
-        Description               # noqa: E501
+        Gets or sets the name of storage.               # noqa: E501
 
-        :param description: The description of this Error.  # noqa: E501
+        :param version_id: The version_id of this TemplateFileInfo.  # noqa: E501
         :type: str
         """
-        self._description = description
+        self._version_id = version_id
     @property
-    def inner_error(self):
-        """Gets the inner_error of this Error.  # noqa: E501
+    def password(self):
+        """Gets the password of this TemplateFileInfo.  # noqa: E501
 
-        Inner Error               # noqa: E501
+        Gets or sets the password.               # noqa: E501
 
-        :return: The inner_error of this Error.  # noqa: E501
-        :rtype: ErrorDetails
+        :return: The password of this TemplateFileInfo.  # noqa: E501
+        :rtype: str
         """
-        return self._inner_error
+        return self._password
 
-    @inner_error.setter
-    def inner_error(self, inner_error):
-        """Sets the inner_error of this Error.
+    @password.setter
+    def password(self, password):
+        """Sets the password of this TemplateFileInfo.
 
-        Inner Error               # noqa: E501
+        Gets or sets the password.               # noqa: E501
 
-        :param inner_error: The inner_error of this Error.  # noqa: E501
-        :type: ErrorDetails
+        :param password: The password of this TemplateFileInfo.  # noqa: E501
+        :type: str
         """
-        self._inner_error = inner_error
+        self._password = password
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -193,7 +193,7 @@ class Error(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, Error):
+        if not isinstance(other, TemplateFileInfo):
             return False
 
         return self.__dict__ == other.__dict__

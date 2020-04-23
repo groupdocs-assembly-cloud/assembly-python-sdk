@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="FormatCollection.py">
+# <copyright company="Aspose" file="AssemblyResponse.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class FormatCollection(object):
-    """Describes object which contains list of supported file formats.
+class AssemblyResponse(object):
+    """Base class for all responses.
     """
 
     """
@@ -41,43 +41,53 @@ class FormatCollection(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'formats': 'list[Format]'
+        'request_id': 'str'
     }
 
     attribute_map = {
-        'formats': 'Formats'
+        'request_id': 'RequestId'
     }
 
-    def __init__(self, formats=None):  # noqa: E501
-        """FormatCollection - a model defined in Swagger"""  # noqa: E501
+    discriminator_value_class_map = {
+        'AssemblyApiErrorResponse': 'AssemblyApiErrorResponse',
+        'FileFormatsResponse': 'FileFormatsResponse'
+    }
 
-        self._formats = None
-        self.discriminator = None
+    def __init__(self, request_id=None):  # noqa: E501
+        """AssemblyResponse - a model defined in Swagger"""  # noqa: E501
 
-        if formats is not None:
-            self.formats = formats
+        self._request_id = None
+        self.discriminator = 'Type'
+
+        if request_id is not None:
+            self.request_id = request_id
 
     @property
-    def formats(self):
-        """Gets the formats of this FormatCollection.  # noqa: E501
+    def request_id(self):
+        """Gets the request_id of this AssemblyResponse.  # noqa: E501
 
-        Gets or sets supported file formats.  # noqa: E501
+        Gets or sets request Id.  # noqa: E501
 
-        :return: The formats of this FormatCollection.  # noqa: E501
-        :rtype: list[Format]
+        :return: The request_id of this AssemblyResponse.  # noqa: E501
+        :rtype: str
         """
-        return self._formats
+        return self._request_id
 
-    @formats.setter
-    def formats(self, formats):
-        """Sets the formats of this FormatCollection.
+    @request_id.setter
+    def request_id(self, request_id):
+        """Sets the request_id of this AssemblyResponse.
 
-        Gets or sets supported file formats.  # noqa: E501
+        Gets or sets request Id.  # noqa: E501
 
-        :param formats: The formats of this FormatCollection.  # noqa: E501
-        :type: list[Format]
+        :param request_id: The request_id of this AssemblyResponse.  # noqa: E501
+        :type: str
         """
-        self._formats = formats
+        self._request_id = request_id
+    def get_real_child_model(self, data):
+        """Returns the real base class specified by the discriminator"""
+        discriminator_value = data[self.discriminator].lower()
+        return self.discriminator_value_class_map.get(discriminator_value)
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -115,7 +125,7 @@ class FormatCollection(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, FormatCollection):
+        if not isinstance(other, AssemblyResponse):
             return False
 
         return self.__dict__ == other.__dict__

@@ -4,6 +4,7 @@ All URIs are relative to *https://localhost/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**assemble_document**](AssemblyApi.md#assemble_document) | **POST** /assembly/assemble | Builds a document using document template and XML or JSON data passed in request.
 [**copy_file**](AssemblyApi.md#copy_file) | **PUT** /assembly/storage/file/copy/{srcPath} | Copy file
 [**copy_folder**](AssemblyApi.md#copy_folder) | **PUT** /assembly/storage/folder/copy/{srcPath} | Copy folder
 [**create_folder**](AssemblyApi.md#create_folder) | **PUT** /assembly/storage/folder/{path} | Create the folder
@@ -14,9 +15,58 @@ Method | HTTP request | Description
 [**get_supported_file_formats**](AssemblyApi.md#get_supported_file_formats) | **GET** /assembly/formats | Retrieves list of supported file formats.
 [**move_file**](AssemblyApi.md#move_file) | **PUT** /assembly/storage/file/move/{srcPath} | Move file
 [**move_folder**](AssemblyApi.md#move_folder) | **PUT** /assembly/storage/folder/move/{srcPath} | Move folder
-[**post_assemble_document**](AssemblyApi.md#post_assemble_document) | **POST** /assembly/{name}/build | Builds a document using document template and XML or JSON data passed in request
 [**upload_file**](AssemblyApi.md#upload_file) | **PUT** /assembly/storage/file/{path} | Upload file
 
+
+# **assemble_document**
+> file assemble_document(assemble_options)
+
+Builds a document using document template and XML or JSON data passed in request.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import groupdocsassemblycloud
+from groupdocsassemblycloud.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: JWT
+configuration = groupdocsassemblycloud.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = groupdocsassemblycloud.AssemblyApi(groupdocsassemblycloud.ApiClient(configuration))
+assemble_options = groupdocsassemblycloud.AssembleOptions() # AssembleOptions | Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.             
+
+try:
+    # Builds a document using document template and XML or JSON data passed in request.
+    api_response = api_instance.assemble_document(assemble_options)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AssemblyApi->assemble_document: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assemble_options** | [**AssembleOptions**](AssembleOptions.md)| Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.              | 
+
+### Return type
+
+[**file**](file.md)
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/xml
+ - **Accept**: application/json, application/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **copy_file**
 > copy_file(dest_path, src_path, src_storage_name=src_storage_name, dest_storage_name=dest_storage_name, version_id=version_id)
@@ -394,7 +444,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_supported_file_formats**
-> FormatCollection get_supported_file_formats()
+> FileFormatsResponse get_supported_file_formats()
 
 Retrieves list of supported file formats.
 
@@ -426,7 +476,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**FormatCollection**](FormatCollection.md)
+[**FileFormatsResponse**](FileFormatsResponse.md)
 
 ### Authorization
 
@@ -551,62 +601,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_assemble_document**
-> file post_assemble_document(name, report_data, folder=folder, dest_file_name=dest_file_name)
-
-Builds a document using document template and XML or JSON data passed in request
-
-### Example
-```python
-from __future__ import print_function
-import time
-import groupdocsassemblycloud
-from groupdocsassemblycloud.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: JWT
-configuration = groupdocsassemblycloud.Configuration()
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = groupdocsassemblycloud.AssemblyApi(groupdocsassemblycloud.ApiClient(configuration))
-name = 'name_example' # str | File name of template, which is located on a storage
-report_data = groupdocsassemblycloud.ReportOptionsData() # ReportOptionsData | Report Data Options. It should be JSON with SaveFormat and ReportData
-folder = 'folder_example' # str | Folder path where template file is located(on a storage) (optional)
-dest_file_name = 'dest_file_name_example' # str | Result name of built document (optional)
-
-try:
-    # Builds a document using document template and XML or JSON data passed in request
-    api_response = api_instance.post_assemble_document(name, report_data, folder=folder, dest_file_name=dest_file_name)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AssemblyApi->post_assemble_document: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **str**| File name of template, which is located on a storage | 
- **report_data** | [**ReportOptionsData**](ReportOptionsData.md)| Report Data Options. It should be JSON with SaveFormat and ReportData | 
- **folder** | **str**| Folder path where template file is located(on a storage) | [optional] 
- **dest_file_name** | **str**| Result name of built document | [optional] 
-
-### Return type
-
-[**file**](file.md)
-
-### Authorization
-
-[JWT](../README.md#JWT)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **upload_file**
 > FilesUploadResult upload_file(file, path, storage_name=storage_name)
 
@@ -656,7 +650,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, multipart/form-data
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

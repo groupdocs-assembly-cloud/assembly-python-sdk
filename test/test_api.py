@@ -41,15 +41,14 @@ class TestApi(BaseTestContext):
         """Assemble document test
 
         """
-        filename = 'TestAllChartTypes.docx'
-        remote_name = filename
-        request = groupdocsassemblycloud.models.requests.UploadFileRequest(os.path.join(self.local_test_folder, filename), os.path.join(self.remote_test_folder, self.test_folder, remote_name),)  
-        result = self.assembly_api.upload_file(request)
-        self.assertTrue(len(result.errors) == 0, 'Error has occurred while uploading document')
-        self.assertTrue(len(result.uploaded) == 1, 'Error has occurred while uploading document')
+        filename = 'TableFeatures.odt'
+        with open(os.path.join(self.local_test_folder, 'TableData.json')) as f:
+            data = f.read()
+        remote_name = os.path.join(self.remote_test_folder, filename)
+        self.uploadFileToStorage(open(os.path.join(self.local_test_folder, filename), 'rb'), remote_name)
 
-        jsonOptions = open(os.path.join(self.local_test_folder, "Teams.json"), 'r').read()
-        saveOptions = groupdocsassemblycloud.models.ReportOptionsData('pdf', jsonOptions)
-        request = groupdocsassemblycloud.models.requests.PostAssembleDocumentRequest(remote_name, saveOptions, os.path.join(self.remote_test_folder, self.test_folder),)
-        result = self.assembly_api.post_assemble_document(request)
+        template_file_info = groupdocsassemblycloud.models.TemplateFileInfo(remote_name)
+        assemble_data = groupdocsassemblycloud.models.AssembleOptions(template_file_info, "pdf", data)
+        request = groupdocsassemblycloud.models.requests.AssembleDocumentRequest(assemble_data)
+        result = self.assembly_api.assemble_document(request)
         self.assertTrue(len(result) > 0, 'Error has occurred while building document')

@@ -1,6 +1,6 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="Aspose" file="FormatCollection.py">
+# <copyright company="Aspose" file="AssemblyApiErrorResponse.py">
 #   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
@@ -29,8 +29,8 @@ import re  # noqa: F401
 import six
 
 
-class FormatCollection(object):
-    """Describes object which contains list of supported file formats.
+class AssemblyApiErrorResponse(object):
+    """Error response for exceptions.             
     """
 
     """
@@ -41,43 +41,43 @@ class FormatCollection(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'formats': 'list[Format]'
+        'error': 'ApiError'
     }
 
     attribute_map = {
-        'formats': 'Formats'
+        'error': 'Error'
     }
 
-    def __init__(self, formats=None):  # noqa: E501
-        """FormatCollection - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, error=None):  # noqa: E501
+        """AssemblyApiErrorResponse - a model defined in Swagger"""  # noqa: E501
 
-        self._formats = None
+        self._error = None
         self.discriminator = None
 
-        if formats is not None:
-            self.formats = formats
+        if error is not None:
+            self.error = error
 
     @property
-    def formats(self):
-        """Gets the formats of this FormatCollection.  # noqa: E501
+    def error(self):
+        """Gets the error of this AssemblyApiErrorResponse.  # noqa: E501
 
-        Gets or sets supported file formats.  # noqa: E501
+        Gets or sets error.  # noqa: E501
 
-        :return: The formats of this FormatCollection.  # noqa: E501
-        :rtype: list[Format]
+        :return: The error of this AssemblyApiErrorResponse.  # noqa: E501
+        :rtype: ApiError
         """
-        return self._formats
+        return self._error
 
-    @formats.setter
-    def formats(self, formats):
-        """Sets the formats of this FormatCollection.
+    @error.setter
+    def error(self, error):
+        """Sets the error of this AssemblyApiErrorResponse.
 
-        Gets or sets supported file formats.  # noqa: E501
+        Gets or sets error.  # noqa: E501
 
-        :param formats: The formats of this FormatCollection.  # noqa: E501
-        :type: list[Format]
+        :param error: The error of this AssemblyApiErrorResponse.  # noqa: E501
+        :type: ApiError
         """
-        self._formats = formats
+        self._error = error
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -115,7 +115,7 @@ class FormatCollection(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, FormatCollection):
+        if not isinstance(other, AssemblyApiErrorResponse):
             return False
 
         return self.__dict__ == other.__dict__

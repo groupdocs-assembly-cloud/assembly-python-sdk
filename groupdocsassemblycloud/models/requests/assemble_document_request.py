@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="PostAssembleDocumentRequest.py">
-#   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+# <copyright company="Aspose" file="AssembleDocumentRequest.py">
+#   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,18 +24,12 @@
 # --------------------------------------------------------------------------------
 
 
-class PostAssembleDocumentRequest(object):
+class AssembleDocumentRequest(object):
     """
-    Request model for post_assemble_document operation.
+    Request model for assemble_document operation.
     Initializes a new instance.
-    :param name File name of template, which is located on a storage
-    :param report_data Report Data Options. It should be JSON with SaveFormat and ReportData
-    :param folder Folder path where template file is located(on a storage)
-    :param dest_file_name Result name of built document
+    :param assemble_options Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.             
     """
 
-    def __init__(self, name, report_data, folder=None, dest_file_name=None):
-        self.name = name
-        self.report_data = report_data
-        self.folder = folder
-        self.dest_file_name = dest_file_name
+    def __init__(self, assemble_options):
+        self.assemble_options = assemble_options

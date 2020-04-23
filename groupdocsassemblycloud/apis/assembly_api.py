@@ -1,8 +1,8 @@
 # coding: utf-8
 
 # -----------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="assembly_api.py">
-#   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+# <copyright company="Aspose" file="assembly_api.py">
+#   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -42,11 +42,111 @@ class AssemblyApi(object):
 
     :param api_client: an api client to perfom http requests
     """
-    def __init__(self, api_client=None):
-        if api_client is None:
-            api_client = ApiClient()
-        self.api_client = api_client
+    def __init__(self, app_sid, app_key, base_url):
+        self.api_client = ApiClient()
+        self.api_client.configuration.host = base_url
+        self.api_client.configuration.api_key['api_key'] = app_key
+        self.api_client.configuration.api_key['app_sid'] = app_sid
         self.__request_token()
+
+    def assemble_document(self, request, **kwargs):  # noqa: E501
+        """Builds a document using document template and XML or JSON data passed in request.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass is_async=True
+
+        :param is_async bool
+        :param assemble_options AssembleOptions : Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.              (required)
+        :return: file
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        try:
+            if kwargs.get('is_async'):
+                return self.assemble_document_with_http_info(request, **kwargs)  # noqa: E501
+            (data) = self.assemble_document_with_http_info(request, **kwargs)  # noqa: E501
+            return data
+        except ApiException as e:
+            if e.status == 401:
+                self.__request_token()
+                if kwargs.get('is_async'):
+                    return self.assemble_document_with_http_info(request, **kwargs)  # noqa: E501
+            (data) = self.assemble_document_with_http_info(request, **kwargs)  # noqa: E501
+            return data
+        
+    def assemble_document_with_http_info(self, request, **kwargs):  # noqa: E501
+        """Builds a document using document template and XML or JSON data passed in request.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass is_async=True
+
+        :param is_async bool
+        :param request AssembleDocumentRequest object with parameters
+        :return: file
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        params = locals()
+        params['is_async'] = ''
+        params['_return_http_data_only'] = False
+        params['_preload_content'] = True
+        params['_request_timeout'] = ''
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method assemble_document" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'assemble_options' is set
+        if request.assemble_options is None:
+            raise ValueError("Missing the required parameter `assemble_options` when calling `assemble_document`")  # noqa: E501
+
+        collection_formats = {}
+        path = '/v1.0/assembly/assemble'
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = []
+
+        body_params = None
+        if request.assemble_options is not None:
+            body_params = request.assemble_options
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/xml'])  # noqa: E501
+
+        
+        # Authentication setting
+        auth_settings = ['JWT']  # noqa: E501
+
+        return self.api_client.call_api(
+            path, 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='file',  # noqa: E501
+            auth_settings=auth_settings,
+            is_async=params.get('is_async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
 
     def copy_file(self, request, **kwargs):  # noqa: E501
         """Copy file  # noqa: E501
@@ -844,7 +944,7 @@ class AssemblyApi(object):
         asynchronous HTTP request, please pass is_async=True
 
         :param is_async bool
-        :return: FormatCollection
+        :return: FileFormatsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -870,7 +970,7 @@ class AssemblyApi(object):
 
         :param is_async bool
         :param request GetSupportedFileFormatsRequest object with parameters
-        :return: FormatCollection
+        :return: FileFormatsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -922,7 +1022,7 @@ class AssemblyApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FormatCollection',  # noqa: E501
+            response_type='FileFormatsResponse',  # noqa: E501
             auth_settings=auth_settings,
             is_async=params.get('is_async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -1176,123 +1276,6 @@ class AssemblyApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def post_assemble_document(self, request, **kwargs):  # noqa: E501
-        """Builds a document using document template and XML or JSON data passed in request  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass is_async=True
-
-        :param is_async bool
-        :param name str : File name of template, which is located on a storage (required)
-        :param report_data ReportOptionsData : Report Data Options. It should be JSON with SaveFormat and ReportData (required)
-        :param folder str : Folder path where template file is located(on a storage)
-        :param dest_file_name str : Result name of built document
-        :return: file
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        try:
-            if kwargs.get('is_async'):
-                return self.post_assemble_document_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.post_assemble_document_with_http_info(request, **kwargs)  # noqa: E501
-            return data
-        except ApiException as e:
-            if e.status == 401:
-                self.__request_token()
-                if kwargs.get('is_async'):
-                    return self.post_assemble_document_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.post_assemble_document_with_http_info(request, **kwargs)  # noqa: E501
-            return data
-        
-    def post_assemble_document_with_http_info(self, request, **kwargs):  # noqa: E501
-        """Builds a document using document template and XML or JSON data passed in request  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass is_async=True
-
-        :param is_async bool
-        :param request PostAssembleDocumentRequest object with parameters
-        :return: file
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        params = locals()
-        params['is_async'] = ''
-        params['_return_http_data_only'] = False
-        params['_preload_content'] = True
-        params['_request_timeout'] = ''
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method post_assemble_document" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'name' is set
-        if request.name is None:
-            raise ValueError("Missing the required parameter `name` when calling `post_assemble_document`")  # noqa: E501
-        # verify the required parameter 'report_data' is set
-        if request.report_data is None:
-            raise ValueError("Missing the required parameter `report_data` when calling `post_assemble_document`")  # noqa: E501
-
-        collection_formats = {}
-        path = '/v1.0/assembly/{name}/build'
-        path_params = {}
-        if request.name is not None:
-            path_params[self.__downcase_first_letter('Name')] = request.name  # noqa: E501
-
-        query_params = []
-        if self.__downcase_first_letter('Folder') in path:
-            path = path.replace('{' + self.__downcase_first_letter('Folder' + '}'), request.folder if request.folder is not None else '')
-        else:
-            if request.folder is not None:
-                query_params.append((self.__downcase_first_letter('Folder'), request.folder))  # noqa: E501
-        if self.__downcase_first_letter('DestFileName') in path:
-            path = path.replace('{' + self.__downcase_first_letter('DestFileName' + '}'), request.dest_file_name if request.dest_file_name is not None else '')
-        else:
-            if request.dest_file_name is not None:
-                query_params.append((self.__downcase_first_letter('DestFileName'), request.dest_file_name))  # noqa: E501
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = []
-
-        body_params = None
-        if request.report_data is not None:
-            body_params = request.report_data
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'application/xml'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/xml'])  # noqa: E501
-
-        
-        # Authentication setting
-        auth_settings = ['JWT']  # noqa: E501
-
-        return self.api_client.call_api(
-            path, 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='file',  # noqa: E501
-            auth_settings=auth_settings,
-            is_async=params.get('is_async'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
     def upload_file(self, request, **kwargs):  # noqa: E501
         """Upload file  # noqa: E501
 
@@ -1420,5 +1403,4 @@ class AssemblyApi(object):
                                         response_type='object',
                                         files={}, _return_http_data_only=True)
         access_token = data['access_token'] if six.PY3 else data['access_token'].encode('utf8')
-        self.api_client.configuration.access_token = access_token
-
+        self.api_client.configuration.access_token = access_token

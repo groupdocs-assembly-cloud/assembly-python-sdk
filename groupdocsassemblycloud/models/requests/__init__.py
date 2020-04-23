@@ -1,5 +1,4 @@
 from groupdocsassemblycloud.models.requests.upload_file_request import UploadFileRequest
-from groupdocsassemblycloud.models.requests.post_assemble_document_request import PostAssembleDocumentRequest
 from groupdocsassemblycloud.models.requests.move_folder_request import MoveFolderRequest
 from groupdocsassemblycloud.models.requests.move_file_request import MoveFileRequest
 from groupdocsassemblycloud.models.requests.get_supported_file_formats_request import GetSupportedFileFormatsRequest
@@ -10,3 +9,4 @@ from groupdocsassemblycloud.models.requests.delete_file_request import DeleteFil
 from groupdocsassemblycloud.models.requests.create_folder_request import CreateFolderRequest
 from groupdocsassemblycloud.models.requests.copy_folder_request import CopyFolderRequest
 from groupdocsassemblycloud.models.requests.copy_file_request import CopyFileRequest
+from groupdocsassemblycloud.models.requests.assemble_document_request import AssembleDocumentRequest

@@ -34,6 +34,7 @@ import unittest
 import warnings
 import six
 import groupdocsassemblycloud
+from groupdocsassemblycloud.models import requests
 
 class BaseTestContext(unittest.TestCase):
     """
@@ -42,18 +43,15 @@ class BaseTestContext(unittest.TestCase):
     def setUp(self):
         root_path = os.path.abspath(os.path.realpath(os.path.dirname(__file__)) + "/..")
         self.local_test_folder = os.path.join(root_path, 'TestData')
-        self.remote_test_folder = os.path.join('Temp', 'SdkTests')
-        self.remote_test_out = os.path.join('Temp', 'SdkTests', 'TestOut')
+        self.remote_test_folder = os.path.join('Temp', 'SdkTests', 'python')
+        self.remote_test_out = os.path.join('Temp', 'SdkTests', 'python', 'TestOut')
         self.local_common_folder = os.path.join(self.local_test_folder, 'Common')
         with open(os.path.join(root_path, 'Settings', 'servercreds.json')) as f:
             creds = json.loads(f.read())
-        api_client = groupdocsassemblycloud.ApiClient()
-        api_client.configuration.host = creds['BaseUrl']
-        api_client.configuration.api_key['api_key'] = creds['AppKey']
-        api_client.configuration.api_key['app_sid'] = creds['AppSid']
-        config = groupdocsassemblycloud.Configuration()
-        config.host = creds['BaseUrl']
-        config.base_url = creds['BaseUrl'] + '/v1.0'
-        self.assembly_api = groupdocsassemblycloud.AssemblyApi(api_client)
+        self.assembly_api = groupdocsassemblycloud.AssemblyApi(creds['AppSid'], creds['AppKey'], creds['BaseUrl'])
         if six.PY3:
             warnings.simplefilter("ignore", ResourceWarning)
+
+    def uploadFileToStorage(self, file, path):
+        upload_request = requests.UploadFileRequest(file, path)
+        self.assembly_api.upload_file(upload_request)

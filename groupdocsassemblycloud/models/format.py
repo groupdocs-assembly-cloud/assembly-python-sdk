@@ -1,7 +1,7 @@
 # coding: utf-8
 # -----------------------------------------------------------------------------------
-# <copyright company="GroupDocs" file="Format.py">
-#   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+# <copyright company="Aspose" file="Format.py">
+#   Copyright (c) 2020 GroupDocs.Assembly for Cloud
 # </copyright>
 # <summary>
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -66,7 +66,7 @@ class Format(object):
     def file_format(self):
         """Gets the file_format of this Format.  # noqa: E501
 
-        File format.  # noqa: E501
+        Gets or sets file format.  # noqa: E501
 
         :return: The file_format of this Format.  # noqa: E501
         :rtype: str
@@ -77,7 +77,7 @@ class Format(object):
     def file_format(self, file_format):
         """Sets the file_format of this Format.
 
-        File format.  # noqa: E501
+        Gets or sets file format.  # noqa: E501
 
         :param file_format: The file_format of this Format.  # noqa: E501
         :type: str
@@ -87,7 +87,7 @@ class Format(object):
     def extension(self):
         """Gets the extension of this Format.  # noqa: E501
 
-        File extension.  # noqa: E501
+        Gets or sets file extension.  # noqa: E501
 
         :return: The extension of this Format.  # noqa: E501
         :rtype: str
@@ -98,7 +98,7 @@ class Format(object):
     def extension(self, extension):
         """Sets the extension of this Format.
 
-        File extension.  # noqa: E501
+        Gets or sets file extension.  # noqa: E501
 
         :param extension: The extension of this Format.  # noqa: E501
         :type: str
