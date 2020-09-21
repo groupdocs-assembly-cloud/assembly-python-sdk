@@ -48,7 +48,8 @@ class BaseTestContext(unittest.TestCase):
         self.local_common_folder = os.path.join(self.local_test_folder, 'Common')
         with open(os.path.join(root_path, 'Settings', 'servercreds.json')) as f:
             creds = json.loads(f.read())
-        self.assembly_api = groupdocsassemblycloud.AssemblyApi(creds['AppSid'], creds['AppKey'], creds['BaseUrl'])
+        self.assembly_api = groupdocsassemblycloud.AssemblyApi(creds['AppSid'], creds['AppKey'])
+        self.assembly_api.api_client.configuration.host = creds['BaseUrl']
         if six.PY3:
             warnings.simplefilter("ignore", ResourceWarning)
 
