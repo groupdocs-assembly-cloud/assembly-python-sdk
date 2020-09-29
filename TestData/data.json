@@ -1,0 +1,21 @@
+{
+  "client": "Mr.Brown",
+  "address": "St.Road 82",
+  "orders": [
+    {
+      "date": "2015-03-05",
+      "products": [
+        { "name": "Monitor", "price": 2, "quantity": 2},
+        { "name": "Computer", "price": 3, "quantity": 1}
+      ]
+    },
+    {
+      "date": "2015-03-15",
+      "products": [
+	      { "name": "Monitor", "price": 2, "quantity": 1},
+        { "name": "Printer", "price": 1, "quantity": 2},
+	      { "name": "Computer", "price": 3, "quantity": 1}
+      ]
+    }
+  ]
+}

@@ -30,6 +30,8 @@ Module with API test
 import os
 from test.base_test_context import BaseTestContext
 import groupdocsassemblycloud.models.requests
+from groupdocsassemblycloud import AssembleOptions, TemplateFileInfo
+from groupdocsassemblycloud.models.requests import AssembleDocumentRequest, UploadFileRequest
 
 class TestApi(BaseTestContext):
     """
@@ -50,5 +52,23 @@ class TestApi(BaseTestContext):
         template_file_info = groupdocsassemblycloud.models.TemplateFileInfo(remote_name)
         assemble_data = groupdocsassemblycloud.models.AssembleOptions(template_file_info, "pdf", data)
         request = groupdocsassemblycloud.models.requests.AssembleDocumentRequest(assemble_data)
+        result = self.assembly_api.assemble_document(request)
+        self.assertTrue(len(result) > 0, 'Error has occurred while building document')
+
+    def test_bug_assembly(self):
+        """
+        Test assemble document
+        """
+        filename = 'template.docx'
+        # Upload the template
+        with open(os.path.join(self.local_test_folder, filename), 'rb') as template_file:
+            upload_request = UploadFileRequest(template_file, path='tt.docx')
+            self.assembly_api.upload_file(upload_request)
+
+        with open(os.path.join(self.local_test_folder, 'data.json')) as f:
+            data = f.read()
+        template_file_info = TemplateFileInfo('tt.docx')
+        options = AssembleOptions(template_file_info, save_format='docx', report_data=data)
+        request = AssembleDocumentRequest(options)
         result = self.assembly_api.assemble_document(request)
         self.assertTrue(len(result) > 0, 'Error has occurred while building document')
