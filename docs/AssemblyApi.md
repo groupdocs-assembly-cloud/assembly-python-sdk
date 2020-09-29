@@ -37,7 +37,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
 api_instance = groupdocsassemblycloud.AssemblyApi(groupdocsassemblycloud.ApiClient(configuration))
-assemble_options = groupdocsassemblycloud.AssembleOptions() # AssembleOptions | Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.             
+assemble_options = groupdocsassemblycloud.AssembleOptions() # AssembleOptions | Assemble Options. It should be JSON or XML with TemplateFileInfo, SaveFormat, ReportData and etc.             
 
 try:
     # Builds a document using document template and XML or JSON data passed in request.
@@ -51,7 +51,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assemble_options** | [**AssembleOptions**](AssembleOptions.md)| Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.              | 
+ **assemble_options** | [**AssembleOptions**](AssembleOptions.md)| Assemble Options. It should be JSON or XML with TemplateFileInfo, SaveFormat, ReportData and etc.              | 
 
 ### Return type
 
@@ -602,7 +602,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_file**
-> FilesUploadResult upload_file(file, path, storage_name=storage_name)
+> FilesUploadResult upload_file(file_content, path, storage_name=storage_name)
 
 Upload file
 
@@ -620,13 +620,13 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
 api_instance = groupdocsassemblycloud.AssemblyApi(groupdocsassemblycloud.ApiClient(configuration))
-file = '/path/to/file.txt' # file | File to upload
+file_content = '/path/to/file.txt' # file | File to upload
 path = 'path_example' # str | Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header.
 storage_name = 'storage_name_example' # str | Storage name (optional)
 
 try:
     # Upload file
-    api_response = api_instance.upload_file(file, path, storage_name=storage_name)
+    api_response = api_instance.upload_file(file_content, path, storage_name=storage_name)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AssemblyApi->upload_file: %s\n" % e)
@@ -636,7 +636,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | **file**| File to upload | 
+ **file_content** | **file**| File to upload | 
  **path** | **str**| Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header. | 
  **storage_name** | **str**| Storage name | [optional] 
 

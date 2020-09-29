@@ -28,7 +28,7 @@ class AssembleDocumentRequest(object):
     """
     Request model for assemble_document operation.
     Initializes a new instance.
-    :param assemble_options Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.             
+    :param assemble_options Assemble Options. It should be JSON or XML with TemplateFileInfo, SaveFormat, ReportData and etc.             
     """
 
     def __init__(self, assemble_options):

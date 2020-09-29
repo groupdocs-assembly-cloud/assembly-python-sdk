@@ -42,12 +42,10 @@ class AssemblyApi(object):
 
     :param api_client: an api client to perfom http requests
     """
-    def __init__(self, app_sid, app_key, base_url):
+    def __init__(self, app_sid, app_key):
         self.api_client = ApiClient()
-        self.api_client.configuration.host = base_url
         self.api_client.configuration.api_key['api_key'] = app_key
         self.api_client.configuration.api_key['app_sid'] = app_sid
-        self.__request_token()
 
     def assemble_document(self, request, **kwargs):  # noqa: E501
         """Builds a document using document template and XML or JSON data passed in request.  # noqa: E501
@@ -56,7 +54,7 @@ class AssemblyApi(object):
         asynchronous HTTP request, please pass is_async=True
 
         :param is_async bool
-        :param assemble_options AssembleOptions : Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.              (required)
+        :param assemble_options AssembleOptions : Assemble Options. It should be JSON or XML with TemplateFileInfo, SaveFormat, ReportData and etc.              (required)
         :return: file
                  If the method is called asynchronously,
                  returns the request thread.
@@ -69,11 +67,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.assemble_document_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.assemble_document_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.assemble_document_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def assemble_document_with_http_info(self, request, **kwargs):  # noqa: E501
         """Builds a document using document template and XML or JSON data passed in request.  # noqa: E501
@@ -172,11 +171,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.copy_file_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.copy_file_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.copy_file_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def copy_file_with_http_info(self, request, **kwargs):  # noqa: E501
         """Copy file  # noqa: E501
@@ -297,11 +297,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.copy_folder_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.copy_folder_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.copy_folder_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def copy_folder_with_http_info(self, request, **kwargs):  # noqa: E501
         """Copy folder  # noqa: E501
@@ -415,11 +416,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.create_folder_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.create_folder_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.create_folder_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def create_folder_with_http_info(self, request, **kwargs):  # noqa: E501
         """Create the folder  # noqa: E501
@@ -521,11 +523,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.delete_file_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.delete_file_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.delete_file_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def delete_file_with_http_info(self, request, **kwargs):  # noqa: E501
         """Delete file  # noqa: E501
@@ -632,11 +635,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.delete_folder_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.delete_folder_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.delete_folder_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def delete_folder_with_http_info(self, request, **kwargs):  # noqa: E501
         """Delete folder  # noqa: E501
@@ -743,11 +747,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.download_file_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.download_file_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.download_file_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def download_file_with_http_info(self, request, **kwargs):  # noqa: E501
         """Download file  # noqa: E501
@@ -853,11 +858,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.get_files_list_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.get_files_list_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.get_files_list_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def get_files_list_with_http_info(self, request, **kwargs):  # noqa: E501
         """Get all files and folders within a folder  # noqa: E501
@@ -956,11 +962,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.get_supported_file_formats_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.get_supported_file_formats_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.get_supported_file_formats_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def get_supported_file_formats_with_http_info(self, request, **kwargs):  # noqa: E501
         """Retrieves list of supported file formats.  # noqa: E501
@@ -1054,11 +1061,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.move_file_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.move_file_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.move_file_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def move_file_with_http_info(self, request, **kwargs):  # noqa: E501
         """Move file  # noqa: E501
@@ -1179,11 +1187,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.move_folder_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.move_folder_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.move_folder_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def move_folder_with_http_info(self, request, **kwargs):  # noqa: E501
         """Move folder  # noqa: E501
@@ -1283,7 +1292,7 @@ class AssemblyApi(object):
         asynchronous HTTP request, please pass is_async=True
 
         :param is_async bool
-        :param file file : File to upload (required)
+        :param file_content file : File to upload (required)
         :param path str : Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header. (required)
         :param storage_name str : Storage name
         :return: FilesUploadResult
@@ -1298,11 +1307,12 @@ class AssemblyApi(object):
             return data
         except ApiException as e:
             if e.status == 401:
-                self.__request_token()
+                self.api_client.request_token()
                 if kwargs.get('is_async'):
                     return self.upload_file_with_http_info(request, **kwargs)  # noqa: E501
-            (data) = self.upload_file_with_http_info(request, **kwargs)  # noqa: E501
-            return data
+                else:
+                    (data) = self.upload_file_with_http_info(request, **kwargs)  # noqa: E501
+                    return data
         
     def upload_file_with_http_info(self, request, **kwargs):  # noqa: E501
         """Upload file  # noqa: E501
@@ -1330,9 +1340,9 @@ class AssemblyApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'file' is set
-        if request.file is None:
-            raise ValueError("Missing the required parameter `file` when calling `upload_file`")  # noqa: E501
+        # verify the required parameter 'file_content' is set
+        if request.file_content is None:
+            raise ValueError("Missing the required parameter `file_content` when calling `upload_file`")  # noqa: E501
         # verify the required parameter 'path' is set
         if request.path is None:
             raise ValueError("Missing the required parameter `path` when calling `upload_file`")  # noqa: E501
@@ -1354,8 +1364,8 @@ class AssemblyApi(object):
 
         form_params = []
         local_var_files = []
-        if request.file is not None:
-            local_var_files.append((self.__downcase_first_letter('File'), request.file))  # noqa: E501
+        if request.file_content is not None:
+            local_var_files.append((self.__downcase_first_letter('FileContent'), request.file_content))  # noqa: E501
 
         body_params = None
 
