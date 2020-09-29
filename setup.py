@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "groupdocs-assembly-cloud"
-VERSION = "20.6.0"
+VERSION = "20.8.0"
 # To install the library, run the following
 #
 # python setup.py install
